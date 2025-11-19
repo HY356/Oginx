@@ -1,0 +1,48 @@
+# 资源监控服务配置文件
+# Resource Monitor Service Configuration
+
+# 服务器设备类型配置
+# Server device type configuration
+device:
+  # 设备类型: CPU 或 GPU
+  # Device type: CPU or GPU
+  type: "CPU"  # 可选值: CPU, GPU
+  
+  # 服务端口配置
+  # Service port configuration
+  port:
+    cpu: 8005    # CPU服务器资源监控端口
+    gpu: 8006    # GPU服务器资源监控端口
+
+# 服务配置
+# Service configuration
+service:
+  # 主机地址
+  host: "0.0.0.0"
+  
+  # 超时设置(秒)
+  timeout: 30
+  
+  # 日志级别
+  log_level: "INFO"  # DEBUG, INFO, WARNING, ERROR
+
+# 资源监控配置
+# Resource monitoring configuration
+monitoring:
+  # 内存监控阈值(百分比)
+  memory_threshold: 90
+  
+  # GPU显存监控阈值(百分比)
+  gpu_memory_threshold: 90
+  
+  # 监控间隔(秒)
+  check_interval: 5
+
+# 缓存配置
+# Cache configuration
+cache:
+  # 是否启用缓存
+  enabled: true
+  
+  # 缓存过期时间(秒)
+  expire_time: 30
