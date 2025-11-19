@@ -1,0 +1,52 @@
+# 服务配置
+server:
+  host: "0.0.0.0"
+  port: 8083
+  workers: 1
+
+# 数据库配置 - 根据实际环境修改
+database:
+  url: "mysql+pymysql://username:password@localhost:3306/ollama_db"
+  pool_size: 10
+  max_overflow: 20
+  pool_recycle: 3600
+
+# 负载均衡配置
+load_balancer:
+  health_check_timeout: 1.0          # 健康检查超时(秒)
+  config_cache_ttl: 10               # 配置缓存时间(秒) - 减少到10秒
+  db_check_interval: 5               # 数据库变更检查间隔(秒)
+  max_retry_count: 2                 # 最大重试次数
+  concurrent_health_checks: true     # 并发健康检查
+  
+# HTTP客户端配置
+http_client:
+  timeout: 300.0                     # 请求超时(秒)
+  max_connections: 100               # 最大连接数
+  max_keepalive_connections: 20      # 最大保持连接数
+
+# 日志配置
+logging:
+  level: "INFO"                      # 日志级别: DEBUG, INFO, WARNING, ERROR
+  enable_request_log: true           # 启用请求日志
+  enable_performance_log: true       # 启用性能日志
+  log_file_max_size: "100MB"         # 单个日志文件最大大小
+  log_file_backup_count: 10          # 日志文件备份数量
+  log_format: "detailed"             # 日志格式: simple, detailed, json
+  real_time_flush: true              # 启用实时刷新到文件
+  flush_interval: 1                  # 强制刷新间隔(秒)，0表示每次日志都立即刷新
+  
+  # 日志文件路径
+  files:
+    app: "logs/app.log"              # 应用日志
+    request: "logs/request.log"      # 请求日志
+    error: "logs/error.log"          # 错误日志
+    performance: "logs/performance.log" # 性能日志
+    health: "logs/health.log"        # 健康检查日志
+
+# 监控配置
+monitoring:
+  enable_metrics: true               # 启用指标收集
+  metrics_endpoint: "/metrics"       # 指标接口路径
+  health_endpoint: "/health"         # 健康检查接口路径
+  status_endpoint: "/status"         # 状态接口路径
